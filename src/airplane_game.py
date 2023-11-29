@@ -15,9 +15,9 @@ ENEMY_PLANE_LIST = [
 ]
 # Mapping for items
 ITEMS_LIST = [
-    {"item_image":"item_A.png", "item_type": "updatefire"}, # +1 life
+    {"item_image":"item_A.png", "item_type": "pluslife"}, # +1 life
     {"item_image":"item_B.png", "item_type": "updatefire"},  # + attack speed & damage
-    {"item_image":"item_C.png", "item_type": "updatefire"} # clear all enemy
+    {"item_image":"item_C.png", "item_type": "destroyall"} # clear all enemy
 ]
 
 WIDTH = 720

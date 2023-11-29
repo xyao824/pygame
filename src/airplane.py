@@ -87,7 +87,6 @@ class My_AirPlane(AirPlane):
     def add_life(self):
         if self.live:
             self.life_remain += 1
-            print(self.life_remain)
 
     def upgrade_fire(self, bullet_damage):
         bullet_damage += 100
@@ -95,11 +94,22 @@ class My_AirPlane(AirPlane):
             self.produce_shot -= 5
         else:
             self.produce_shot = 5 # max speed
-        print(self.produce_shot)
+        
+        if self.shot_count >= self.produce_shot:
+            self.shot_count = self.produce_shot - 1
+
         return bullet_damage
 
     def destory_all_enemy(self, enemy_plane_list):
-        enemy_plane_list = []
+        self.bang_sound.play()
+        for enempy_plane in enemy_plane_list:
+            if enempy_plane.live:
+                print(enempy_plane)
+                self.total_score += enempy_plane.score
+                enempy_plane.live = False
+            else:
+                enemy_plane_list.remove(enempy_plane)
+        
         return enemy_plane_list
     
     
@@ -111,13 +121,13 @@ class My_AirPlane(AirPlane):
 
                 # mapping the item type with action
                 if item.item_type == "pluslife":
-                    print("Added life")
+                    # print("Added life")
                     self.add_life()
                 elif item.item_type == "updatefire":
-                    print("Update fire")
+                    # print("Update fire")
                     self.upgrade_fire(bullet_damage)
                 elif item.item_type == "destroyall":
-                    print("Destroy all")
+                    # print("Destroy all")
                     enemy_plane_list = self.destory_all_enemy(enemy_plane_list)
         
         return self.life_remain, enemy_plane_list, bullet_damage

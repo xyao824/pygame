@@ -81,7 +81,7 @@ def create_enemy_airplane(screen, enemy_plane_list, bang_sound, shot_sound):
         hp = ENEMY_PLANE_LIST[index]['HP']
         x  = randrange(0, WIDTH, 36)
         if x not in x_list and (x + ENEMY_PLANE_LIST[index]["enemy_width"]) <= WIDTH: # can not repeat
-            enemy_airplane = Enemy_Airplane(image =enemy_plane_type, x = x, y = 0, speed = speed, bang_sound=bang_sound, shot_sound = shot_sound, hp = hp, score = ENEMY_PLANE_LIST[index]["score"])
+            enemy_airplane = Enemy_Airplane(image =enemy_plane_type, x = x, y = -216, speed = speed, bang_sound=bang_sound, shot_sound = shot_sound, hp = hp, score = ENEMY_PLANE_LIST[index]["score"])
             enemy_plane_list.append(enemy_airplane)
             x_list.append(x)
     
@@ -238,6 +238,7 @@ def main(SOUND_ON, GAMEOVER, LIFE_REMAIN):
             enemy_plane_list = []
             my_airplane.response(360-18, 900-36-5) 
             my_airplane.display_airplane(screen)
+            
         pygame.display.update()
         pygame.time.Clock().tick(60)
 
